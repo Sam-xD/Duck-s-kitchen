@@ -36,8 +36,9 @@ public class Player : MonoBehaviour
 
         Vector3 moveDir = new Vector3(mot.x, 0f, mot.y);
         //Converting the vector into 3d
-        //if(Physics.CapsuleCast())
-        transform.position += moveDir * val * Time.deltaTime;
+        if(!Physics.CapsuleCast(transform.position, transform.position + Vector3.up * 2f,0.4f,moveDir,0.5f)) 
+            transform.position += moveDir * val * Time.deltaTime;
+        //avoiding collision with other objects
 
         if (moveDir != Vector3.zero)
            transform.forward= Vector3.Slerp(transform.forward, moveDir, Time.deltaTime*5);
